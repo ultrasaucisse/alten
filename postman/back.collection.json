@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "19bf1489-f8a2-44d3-a60a-36007c2dd9e0",
+		"name": "back",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24231942"
+	},
+	"item": [
+		{
+			"name": "products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('array');",
+							"    responseData.forEach(function(product) {",
+							"        pm.expect(product).to.have.property('id');",
+							"        pm.expect(product).to.have.property('code');",
+							"        pm.expect(product).to.have.property('name');",
+							"        pm.expect(product).to.have.property('description');",
+							"        pm.expect(product).to.have.property('price');",
+							"        pm.expect(product).to.have.property('quantity');",
+							"        pm.expect(product).to.have.property('inventoryStatus');",
+							"        pm.expect(product).to.have.property('category');",
+							"        pm.expect(product).to.have.property('image');",
+							"        pm.expect(product).to.have.property('rating');",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Content type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://back:8080/products",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createProduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).has.property('id');",
+							"    pm.expect(responseData).has.property('code');",
+							"    pm.expect(responseData).has.property('name');",
+							"    pm.expect(responseData).has.property('description');",
+							"    pm.expect(responseData).has.property('price');",
+							"    pm.expect(responseData).has.property('quantity');",
+							"    pm.expect(responseData).has.property('inventoryStatus');",
+							"    pm.expect(responseData).has.property('category');",
+							"    pm.expect(responseData).has.property('image');",
+							"    pm.expect(responseData).has.property('rating');",
+							"});",
+							"",
+							"pm.test(\"id is equal to 6\", function () {",
+							"  pm.expect(pm.response.json().id).equals(6);",
+							"});",
+							"",
+							"pm.test(\"code is equal to 'le code'\", function () {",
+							"  pm.expect(pm.response.json().code).equals('le code');",
+							"});",
+							"",
+							"pm.test(\"name is equal to 'le nom'\", function () {",
+							"  pm.expect(pm.response.json().name).equals('le nom');",
+							"});",
+							"",
+							"pm.test(\"description is equal to 'la description'\", function () {",
+							"  pm.expect(pm.response.json().description).equals('la description');",
+							"});",
+							"",
+							"pm.test(\"price is equal to 68\", function () {",
+							"  pm.expect(pm.response.json().price).equals(68);",
+							"});",
+							"",
+							"pm.test(\"quantity is equal to 11\", function () {",
+							"  pm.expect(pm.response.json().quantity).equals(11);",
+							"});",
+							"",
+							"pm.test(\"inventoryStatus is equal to 'status'\", function () {",
+							"  pm.expect(pm.response.json().inventoryStatus).equals('status');",
+							"});",
+							"",
+							"pm.test(\"category is equal to 'category'\", function () {",
+							"  pm.expect(pm.response.json().category).equals('category');",
+							"});",
+							"",
+							"pm.test(\"image is equal to 'image'\", function () {",
+							"  pm.expect(pm.response.json().image).equals('image');",
+							"});",
+							"",
+							"pm.test(\"rating is equal to 4\", function () {",
+							"  pm.expect(pm.response.json().rating).equals(4);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "le code",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "le nom",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "la description",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "68",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "inventoryStatus",
+							"value": "status",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "category",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "rating",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://back:8080/products",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patchProduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData).has.property('id');\r",
+							"    pm.expect(responseData).has.property('code');\r",
+							"    pm.expect(responseData).has.property('name');\r",
+							"    pm.expect(responseData).has.property('description');\r",
+							"    pm.expect(responseData).has.property('price');\r",
+							"    pm.expect(responseData).has.property('quantity');\r",
+							"    pm.expect(responseData).has.property('inventoryStatus');\r",
+							"    pm.expect(responseData).has.property('category');\r",
+							"    pm.expect(responseData).has.property('image');\r",
+							"    pm.expect(responseData).has.property('rating');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id is equal to 6\", function () {\r",
+							"  pm.expect(pm.response.json().id).equals(6);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"code is equal to 'nouveau code'\", function () {\r",
+							"  pm.expect(pm.response.json().code).equals('nouveau code');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name is equal to 'le nom'\", function () {\r",
+							"  pm.expect(pm.response.json().name).equals('le nom');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"description is equal to 'nouvelle description'\", function () {\r",
+							"  pm.expect(pm.response.json().description).equals('nouvelle description');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"price is equal to 68\", function () {\r",
+							"  pm.expect(pm.response.json().price).equals(68);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"quantity is equal to 11\", function () {\r",
+							"  pm.expect(pm.response.json().quantity).equals(11);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"inventoryStatus is equal to 'status'\", function () {\r",
+							"  pm.expect(pm.response.json().inventoryStatus).equals('status');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"category is equal to 'category'\", function () {\r",
+							"  pm.expect(pm.response.json().category).equals('category');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"image is equal to 'image'\", function () {\r",
+							"  pm.expect(pm.response.json().image).equals('image');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"rating is equal to 4\", function () {\r",
+							"  pm.expect(pm.response.json().rating).equals(4);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json-patch+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/code\",\n        \"value\": \"nouveau code\"\n    },\n        {\n        \"op\": \"replace\",\n        \"path\": \"/description\",\n        \"value\": \"nouvelle description\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://back:8080/product/6",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"6"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.to.have.status(200));",
+							"});",
+							"",
+							"pm.test(\"Check if response is json\", function() {",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).has.property('id');",
+							"    pm.expect(responseData).has.property('code');",
+							"    pm.expect(responseData).has.property('name');",
+							"    pm.expect(responseData).has.property('description');",
+							"    pm.expect(responseData).has.property('price');",
+							"    pm.expect(responseData).has.property('quantity');",
+							"    pm.expect(responseData).has.property('inventoryStatus');",
+							"    pm.expect(responseData).has.property('category');",
+							"    pm.expect(responseData).has.property('image');",
+							"    pm.expect(responseData).has.property('rating');",
+							"});",
+							"",
+							"pm.test(\"id is a non-negative number\", function () {",
+							"  pm.expect(pm.response.json().id).to.be.a('number').and.to.be.at.least(0);",
+							"});",
+							"",
+							"pm.test(\"code is a non-empty string\", function () {",
+							"  pm.expect(pm.response.json().code).to.be.a('string').and.not.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"name is a non-empty string\", function () {",
+							"  pm.expect(pm.response.json().name).to.be.a('string').and.not.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"description is a non-empty string\", function () {",
+							"  pm.expect(pm.response.json().description).to.be.a('string').and.not.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"price is a non-negative number\", function () {",
+							"  pm.expect(pm.response.json().price).to.be.a('number').and.to.be.at.least(0);",
+							"});",
+							"",
+							"pm.test(\"quantity is a non-negative number\", function () {",
+							"  pm.expect(pm.response.json().quantity).to.be.a('number').and.to.be.at.least(0);",
+							"});",
+							"",
+							"pm.test(\"inventoryStatus is a non-empty string\", function () {",
+							"  pm.expect(pm.response.json().inventoryStatus).to.be.a('string').and.not.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"category is a non-empty string\", function () {",
+							"  pm.expect(pm.response.json().category).to.be.a('string').and.not.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"image is a non-empty string\", function () {",
+							"  pm.expect(pm.response.json().image).to.be.a('string').and.not.to.be.empty;",
+							"});",
+							"",
+							"pm.test(\"rating is a non-negative number\", function () {",
+							"  pm.expect(pm.response.json().rating).to.be.a('number').and.to.be.at.least(0);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://back:8080/product/1000",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"1000"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200));\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Product id 6 is not found\", () => {\r",
+							"\r",
+							"    const options = {\r",
+							"        url: \"http://back:8080/product/6\",\r",
+							"        method: 'GET'\r",
+							"    };\r",
+							"\r",
+							"    pm.sendRequest(options, function (err, res) {\r",
+							"        pm.response.to.not.be.withBody;\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://back:8080/product/6",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"6"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "swagger-json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if response is json\", function() {    \r",
+							"    pm.expect(pm.response.json()).to.be.an('object');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://back:8080/api-docs",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "swagger-ui",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://back:8080/swagger-ui/index.html",
+					"protocol": "http",
+					"host": [
+						"back"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-ui",
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

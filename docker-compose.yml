@@ -1,0 +1,44 @@
+services:
+
+  db:
+    image: mongo:3.6
+    container_name: db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: hello
+    networks:
+      - alten
+    volumes:
+      - ./db/init-db.js:/docker-entrypoint-initdb.d/init-db.js
+
+  back:
+    image: alten/back
+    container_name: back
+    build:
+      context: back
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - alten
+    ports:
+      - 8080:8080
+
+  front:
+    image: alten/front
+    container_name: front
+    build:
+      context: front
+    depends_on:
+      - back
+    restart: always
+    networks:
+      - alten
+    ports:
+      - 4200:4200
+
+networks:
+  alten:
+    name: alten
+  
